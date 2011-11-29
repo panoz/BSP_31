@@ -10,12 +10,9 @@ import java.util.concurrent.Semaphore;
  *
  * @author panos
  */
-public interface Register extends Runnable {
+public interface Register {
 
     int numberOfWaitingCustomers();
 
-//    void enqueue(Customer customer);
-//    
-//    boolean busy();
     Semaphore semaphore();
 }
