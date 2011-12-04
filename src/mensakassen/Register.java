@@ -10,9 +10,30 @@ import java.util.concurrent.Semaphore;
  *
  * @author panos
  */
-public interface Register {
+final class Register {
 
-    int numberOfWaitingCustomers();
+    private final String name;
+    private final Semaphore semaphore;
 
-    Semaphore semaphore();
+    Register(String name) {
+        this.name = name;
+        this.semaphore = new Semaphore(1);
+    }
+
+    static Register create(String name) {
+        return new Register(name);
+    }
+
+    public int numberOfWaitingCustomers() {
+        return semaphore.getQueueLength();
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
+    public Semaphore semaphore() {
+        return semaphore;
+    }
 }
