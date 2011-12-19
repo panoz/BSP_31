@@ -51,7 +51,7 @@ final class Customer implements Runnable {
     private void paying() {
         Register register = registers.registerWithShortestQueue();
         try {
-            register.semaphore().acquire();
+            register.acquire();
         } catch (InterruptedException ex) {
             Logger.getLogger(Customer.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -62,7 +62,7 @@ final class Customer implements Runnable {
             Logger.getLogger(Customer.class.getName()).log(Level.SEVERE, null, ex);
         }
         System.out.println("Customer " + this + " has finished paying at register " + register);
-        register.semaphore().release();
+        register.release();
     }
 
     private void eating() {

@@ -33,7 +33,14 @@ final class Register {
         return name;
     }
 
-    public Semaphore semaphore() {
-        return semaphore;
+//    public Semaphore semaphore() {
+//        return semaphore;
+//    }
+    public void acquire() throws InterruptedException {
+        semaphore.acquire();
+    }
+
+    public void release() {
+        semaphore.release();
     }
 }
